@@ -1,0 +1,74 @@
+.signup-btn {
+  margin-right: 10px;
+}
+
+.rings {
+  max-width: 400px;
+}
+
+.heart-hands {
+  max-width: 500px;
+}
+
+.couple {
+  max-width: 355px;
+}
+
+.login-btn {
+  margin-right: 10px;
+}
+
+.check-in-container {
+  margin-top: 0px;
+}
+
+.be-there {
+  margin-bottom: 10px;
+  border: none;
+  background-color: #9eb5a3;
+}
+
+.cant-makeit {
+  border: none;
+  background-color: #d7c2b0;
+}
+
+.login-user {
+  background-color: #4e5940;
+  margin-bottom: 20px;
+}
+
+.login-btn {
+  border: none;
+  /*background-color: #4e5940;*/
+}
+
+.btn-color {
+  margin-left: 10px;
+  border: none;
+  background-color: #456711;
+}
+
+.user-name {
+  margin-bottom: 15px;
+}
+
+.above-heading-p {
+  color: #456711;
+}
+
+.black-text {
+  color: black;
+}
+
+.btn-rsvp {
+  background-color: #456711;
+}
+
+.par-left-mar {
+  margin-left: 25px;
+}
+
+.btn:hover {
+  background-color: #334120;
+}
