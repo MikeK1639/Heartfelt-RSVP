@@ -8,6 +8,7 @@ class User extends Model {
   }
 }
 
+// ::::: Table colum headings :::::
 User.init(
   {
     id: {
@@ -47,6 +48,7 @@ User.init(
         return user;
       },
     },
+    // ::::: Writing `Event` table to database :::::
     sequelize,
     timestamps: false,
     freezeTableName: true,

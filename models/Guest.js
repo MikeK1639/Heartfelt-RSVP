@@ -1,10 +1,10 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
 
-class Event extends Model {}
+class Guest extends Model {}
 
 // ::::: Table colum headings :::::
-Event.init(
+Guest.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -12,12 +12,9 @@ Event.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    title: {
+    guest_name: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    event_description: {
-      type: DataTypes.STRING,
     },
     post_dateCreated: {
       type: DataTypes.DATE,
