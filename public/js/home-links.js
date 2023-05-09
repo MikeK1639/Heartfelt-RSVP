@@ -20,6 +20,7 @@ const signupFormHandler = async (event) => {
       body: JSON.stringify({ user, email, password }), // deconstructing
       headers: { "Content-Type": "application/json" },
     });
+
     if (username && email && password) {
       const response = await fetch("api/user", {
         method: "POST",
@@ -28,9 +29,11 @@ const signupFormHandler = async (event) => {
       });
 
       if (response.ok) {
-        document.location.replace("/dashboard");
+        document.location.replace("/");
       } else {
-        alert(response.statusText);
+        alert(
+          "Please check your user name and password.\nIf you are a new user, please Sign Up."
+        );
       }
     }
   }
@@ -45,21 +48,25 @@ const loginFormHandler = async (event) => {
   console.log(`Email:${email}\nPassword: ${password}`);
 
   if (email && password) {
-    console.log("About to fetch!");
     const response = await fetch("api/user/login", {
       method: "POST",
       body: JSON.stringify({ email, password }),
       headers: { "Content-Type": "application/json" },
     });
+
     console.log(response);
+
     if (response.ok) {
-      document.location.replace("/");
+      console.log("Logged In!");
     } else {
       alert(response.statusText);
     }
   }
 };
 
+// const contactPage = () => {
+//   document.location.replace("/api/user/contact");
+// };
 
 // ::::: Landing pare login button :::::
 $("#login-btn").click(loginHandler);
@@ -71,4 +78,4 @@ $("#login-form-btn").click(loginFormHandler);
 $("#signup-form-btn").click(signupFormHandler);
 
 // ::::: Redirect to the contact page :::::
-$("#contact-us-link").click(contactPage);
+// $("#contact-us-link").click(contactPage);
