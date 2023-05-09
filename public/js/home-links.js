@@ -1,5 +1,5 @@
 // ::::: Redirect to the login page :::::
-const loginHandler = async (event) => {
+const loginHandler = () => {
   document.location.replace("/login");
 };
 
@@ -60,13 +60,15 @@ const loginFormHandler = async (event) => {
   }
 };
 
-// ::::: Landing pare login button
+
+// ::::: Landing pare login button :::::
 $("#login-btn").click(loginHandler);
 
-// ::::: LogIn form button on login page
+// ::::: LogIn form button on login page :::::
 $("#login-form-btn").click(loginFormHandler);
 
-// ::::: Signup form button on signup page
+// ::::: Signup form button on signup page :::::
 $("#signup-form-btn").click(signupFormHandler);
 
-$("#contact-us-link").click(document.location.replace("contacts"));
+// ::::: Redirect to the contact page :::::
+$("#contact-us-link").click(contactPage);

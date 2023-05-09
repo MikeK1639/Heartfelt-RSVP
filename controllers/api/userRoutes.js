@@ -33,11 +33,11 @@ router.post("/login", async (req, res) => {
     }
 
     console.log("User Data:", userData);
-    
+
     const validPassword = await userData.checkPassword(req.body.password);
-    
+
     console.log("Valid PW:", validPassword);
-    
+
     if (!validPassword) {
       res
         .status(400)
@@ -57,6 +57,10 @@ router.post("/login", async (req, res) => {
     console.log(err);
     res.status(500).json(err);
   }
+});
+
+router.get("/contact", (req, res) => {
+  res.render("contacts");
 });
 
 module.exports = router;
