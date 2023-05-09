@@ -29,14 +29,14 @@ Guest.init(
       },
     },
   },
-  // ::::: Writing `Event` table to database :::::
+  // ::::: Writing `Guest` table to database :::::
   {
     sequelize,
     timsestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: "event",
+    modelName: "guest",
   }
 );
 
-module.exports = Event;
+module.exports = Guest;
