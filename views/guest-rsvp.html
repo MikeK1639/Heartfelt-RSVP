@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Log in - HeartfeltRSVP</title>
+    <meta name="description" content="This is an application to help with the head aches of wedding planning by taking care of the RSVP process. The future and MR and MRS and will create an invitation list and prospective guests and the guest will then sign in using a 1+1 authentication process and RSVP to the gathering.">
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
+    <link rel="stylesheet" href="/assets/css/local-styles.css">
+    <link rel="stylesheet" href="/assets/css/Login-Form-Basic-icons.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-md sticky-top flex-wrap navbar-shrink py-3" id="mainNav">
+        <div class="container"><a class="navbar-brand d-flex align-items-center" href="/"><span><img class="logo" src="/assets/img/logo-no-background.svg" width="250px"></span></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item"><a class="nav-link fs-5 home-link" href="/index.html">Home</a></li>
+                    <li class="nav-item"></li>
+                    <li class="nav-item"></li>
+                    <li class="nav-item"></li>
+                    <li class="nav-item"></li>
+                </ul><button class="btn btn-primary btn-color" id="login-btn" type="button">Login</button><button class="btn btn-primary btn-color" id="rsvp-btn" type="button">Guest RSVP</button><button class="btn btn-primary btn-color" id="logout-btn" type="button">Logout</button>
+            </div>
+        </div>
+    </nav>
+    <section class="py-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-md-8 col-xl-6 text-center mx-auto">
+                    <h2 class="fw-bold">Check-in</h2>
+                </div>
+            </div>
+            <section class="check-in-container">
+                <div class="container">
+                    <div class="row d-flex justify-content-center align-items-start align-items-lg-start">
+                        <div class="col-md-6 col-xl-4">
+                            <div class="card mb-5">
+                                <div class="card-body d-flex flex-column align-items-center">
+                                    <form class="text-center" method="post">
+                                        <div class="mb-3"><input class="form-control" type="email" name="input" placeholder="Enter your full name"></div>
+                                        <div class="mb-3"></div>
+                                        <div class="mb-3"><button class="btn btn-primary d-block w-100 btn-rsvp mb-3" type="submit">I'll be there!</button><button class="btn btn-primary d-block w-100 cant-makeit btn-rsvp" type="submit">I can't make it</button></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="modal fade" role="dialog" tabindex="-1" id="modal-1">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Modal Title</h4><button class="btn-close" type="button" aria-label="Close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>The content of your modal.</p>
+                        </div>
+                        <div class="modal-footer"><button class="btn btn-light" type="button" data-bs-dismiss="modal">Close</button><button class="btn btn-primary" type="button">Save</button></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="bg-primary-gradient"></footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/bold-and-bright.js"></script>
+</body>
+
+</html>
