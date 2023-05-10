@@ -15,9 +15,10 @@ router.post("/", async (req, res) => {
       req.session.logged_in = true;
 
       //* ::::: MUST SEND A RESPONSE :::::
-      res.status(200).json({ user: userData, message: "You are now logged in!" });
+      res
+        .status(200)
+        .json({ user: userData, message: "You are now logged in!" });
     });
-
 
     // res.json(userData);
   } catch (err) {

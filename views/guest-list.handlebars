@@ -1,7 +1,7 @@
 <section class="py-3 bg-primary-gradient pb-5">
   <h1 class="fw-bold text-center mt-3">Invited Guest</h1>
   <div class="container">
-    <div class="row mb-3 mt-5">
+    {{! <div class="row mb-3 mt-5">
       <div class="col offset-lg-0 d-inline-flex justify-content-center"><input
           class="border rounded shadow-sm d-xl-flex justify-content-xl-center px-4"
           type="text"
@@ -9,9 +9,9 @@
           placeholder="Event name"
         /><button class="btn btn-primary mx-3 btn-color" type="button">Event
           name</button></div>
-    </div>
+    </div> }}
     <div class="row">
-      <div class="col offset-lg-0 d-inline-flex justify-content-center"><input
+      <div id="invited-guest" class="col offset-lg-0 d-inline-flex justify-content-center"><input
           class="border rounded shadow-sm d-xl-flex justify-content-xl-center px-4"
           type="text"
           name="input"
@@ -22,7 +22,14 @@
 </section>
 <section>
   <div class="col mt-3 my-5 pt-4">
-    <h4 class="fs-1 fw-normal text-center">Guest List</h4>
-    <p class="fs-3 text-center">Guest 1</p>
+    <h4 id="guests" class="fs-1 fw-normal text-center">Guest List</h4>
+    {{! * UN-COMMENT LATER }}
+    {{!-- {{#each}}
+      {{#if attending}}
+        <p class="fs-3 text-center">${guest_name}</p><span>⭐</span>
+      {{else}}
+        <p class="fs-3 text-center">${guest_name}</p>
+      {{/if}}
+    {{/each}} --}}
   </div>
 </section>

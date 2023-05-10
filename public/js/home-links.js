@@ -18,7 +18,7 @@ const signupFormHandler = async (event) => {
   if (user && email && password) {
     const response = await fetch("api/user", {
       method: "POST",
-      body: JSON.stringify({ user, email, password }), // deconstructing
+      body: JSON.stringify({ user, email, password }), // stringify to send over
       headers: { "Content-Type": "application/json" },
     });
 
@@ -63,6 +63,8 @@ const loginFormHandler = async (event) => {
     }
   }
 };
+
+
 
 //! ::::: LANDING PAGE BUTTONS EVENT LISTENERS :::::
 // ::::: Landing page login button :::::
