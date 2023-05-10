@@ -9,6 +9,17 @@ router.post("/", async (req, res) => {
       email: req.body.email,
       password: req.body.password,
     });
+
+    req.session.save(() => {
+      req.session.user_id = userData.id;
+      req.session.logged_in = true;
+
+      //* ::::: MUST SEND A RESPONSE :::::
+      res.status(200).json({ user: userData, message: "You are now logged in!" });
+    });
+
+
+    // res.json(userData);
   } catch (err) {
     console.log(err);
     res.status(400).json(err);
@@ -16,8 +27,6 @@ router.post("/", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-  console.log("In login route.============================================");
-  console.log("Request body:", req.body);
   try {
     const userData = await User.findOne({
       where: {
@@ -33,11 +42,9 @@ router.post("/login", async (req, res) => {
     }
 
     console.log("User Data:", userData);
-    
+
     const validPassword = await userData.checkPassword(req.body.password);
-    
-    console.log("Valid PW:", validPassword);
-    
+
     if (!validPassword) {
       res
         .status(400)
@@ -57,6 +64,14 @@ router.post("/login", async (req, res) => {
     console.log(err);
     res.status(500).json(err);
   }
+});
+
+router.get("/contact", (req, res) => {
+  res.render("contacts");
+});
+
+router.get("/guest-list", (req, res) => {
+  res.render("guest-list");
 });
 
 module.exports = router;
