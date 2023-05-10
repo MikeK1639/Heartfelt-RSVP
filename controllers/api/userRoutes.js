@@ -9,6 +9,17 @@ router.post("/", async (req, res) => {
       email: req.body.email,
       password: req.body.password,
     });
+
+    req.session.save(() => {
+      req.session.user_id = userData.id;
+      req.session.logged_in = true;
+
+      //* ::::: MUST SEND A RESPONSE :::::
+      res.status(200).json({ user: userData, message: "You are now logged in!" });
+    });
+
+
+    // res.json(userData);
   } catch (err) {
     console.log(err);
     res.status(400).json(err);
@@ -30,14 +41,9 @@ router.post("/login", async (req, res) => {
       return;
     }
 
-    // console.log("User Data:", userData);
+    console.log("User Data:", userData);
 
     const validPassword = await userData.checkPassword(req.body.password);
-
-    console.log(
-      "Valid PW: ++++++++++++++++++++++++++++++++++++",
-      validPassword
-    );
 
     if (!validPassword) {
       res
@@ -54,7 +60,6 @@ router.post("/login", async (req, res) => {
         .status(200)
         .json({ user: userData, message: "You are now logged in!" });
     });
-
   } catch (err) {
     console.log(err);
     res.status(500).json(err);

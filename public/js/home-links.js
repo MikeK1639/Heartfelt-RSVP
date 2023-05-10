@@ -1,5 +1,5 @@
 // ::::: Redirect to the login page :::::
-const loginHandler = () => {
+const loginNavBtnHandler = () => {
   document.location.replace("/login");
 };
 
@@ -13,6 +13,7 @@ const signupFormHandler = async (event) => {
 
   console.log(`User: ${user}\nEmail:${email}\nPassword: ${password}`);
 
+  //! ::::: SIGN UP :::::
   // ::::: Redirect to the signup route to create a new user :::::
   if (user && email && password) {
     const response = await fetch("api/user", {
@@ -21,26 +22,23 @@ const signupFormHandler = async (event) => {
       headers: { "Content-Type": "application/json" },
     });
 
-    if (username && email && password) {
-      const response = await fetch("api/user", {
-        method: "POST",
-        body: JSON.stringify({ username, email, password }),
-        headers: { "Content-Type": "application/json" },
-      });
-
-      if (response.ok) {
-        document.location.replace("/");
-      } else {
-        alert(
-          "Please check your user name and password.\nIf you are a new user, please Sign Up."
-        );
-      }
+    // ::::: If user created re-route to the home page :::::
+    if (response.ok) {
+      const { message } = await response.json();
+      console.log(message);
+      document.location.replace("api/user/guest-list");
+    } else {
+      alert(
+        "Please check your user name and password.\nIf you are a new user, please Sign Up."
+      );
     }
   }
 };
 
+//! ::::: LOG IN :::::
 const loginFormHandler = async (event) => {
   event.preventDefault();
+
   //collect values from login form
   const email = document.querySelector("#email-login").value.trim();
   const password = document.querySelector("#password-login").value.trim();
@@ -54,28 +52,24 @@ const loginFormHandler = async (event) => {
       headers: { "Content-Type": "application/json" },
     });
 
-    console.log(response);
+    // console.log(response);
 
     if (response.ok) {
+      document.location.replace("/api/user/guest-list");
       console.log("Logged In!");
     } else {
-      alert(response.statusText);
+      alert("Please check your email and password and try again.");
+      // alert(response.statusText);
     }
   }
 };
 
-// const contactPage = () => {
-//   document.location.replace("/api/user/contact");
-// };
-
-// ::::: Landing pare login button :::::
-$("#login-btn").click(loginHandler);
+//! ::::: LANDING PAGE BUTTONS EVENT LISTENERS :::::
+// ::::: Landing page login button :::::
+$("#login-btn").click(loginNavBtnHandler);
 
 // ::::: LogIn form button on login page :::::
 $("#login-form-btn").click(loginFormHandler);
 
 // ::::: Signup form button on signup page :::::
 $("#signup-form-btn").click(signupFormHandler);
-
-// ::::: Redirect to the contact page :::::
-// $("#contact-us-link").click(contactPage);
