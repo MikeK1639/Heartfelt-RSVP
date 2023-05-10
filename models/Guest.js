@@ -1,6 +1,6 @@
 const { Model, DataTypes } = require("sequelize");
 const sequelize = require("../config/connection");
-const guest = "./guest"
+
 class Guest extends Model {}
 
 // ::::: Table colum headings :::::
@@ -21,7 +21,11 @@ Guest.init(
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },
-    user_id: {
+    attending: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    },
+    event_id: {
       type: DataTypes.INTEGER,
       references: {
         model: "event",
