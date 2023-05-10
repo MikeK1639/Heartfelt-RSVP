@@ -75,3 +75,25 @@ router.get("/guest-list", (req, res) => {
 });
 
 module.exports = router;
+
+
+const express = require('express');
+
+router.delete('/logout', (req, res) => {
+  if (req.session) {
+    req.session.destroy(err => {
+      if (err) {
+        res.sendStatus(400);
+      } else {
+        res.sendStatus(200).send('You have been successfully logged out.');
+      }
+    });
+  } else {
+    res.end();
+  }
+});
+
+module.exports = router;
+
+// ::::: Signup form button on signup page :::::
+$("#logout-btn").click(logoutHandler);
