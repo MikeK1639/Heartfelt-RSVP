@@ -31,6 +31,7 @@
 .cant-makeit {
   border: none;
   background-color: #d7c2b0;
+  margin-top: 30px;
 }
 
 .login-user {
@@ -77,4 +78,10 @@
   color: #4e5d78;
 }
 
+.radio-btn-container {
+  margin-bottom: 10px;
+}
 
+.radio-margin {
+  margin-right: 10px;
+}

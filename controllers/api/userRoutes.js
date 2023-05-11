@@ -72,13 +72,10 @@ router.get("/contact", (req, res) => {
 });
 
 router.get("/guest-list", (req, res) => {
-  res.render("guest-list");
+  res.render("guest-list", {
+    logged_in: req.session.logged_in,
+  });
 });
-
-module.exports = router;
-
-
-const express = require('express');
 
 router.delete('/logout', (req, res) => {
   if (req.session) {
@@ -95,6 +92,3 @@ router.delete('/logout', (req, res) => {
 });
 
 module.exports = router;
-
-// ::::: Signup form button on signup page :::::
-$("#logout-btn").click(logoutHandler);

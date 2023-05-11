@@ -30,7 +30,7 @@
           href="/"
         ><span><img
               class="logo"
-              src="public\img\3.png"
+              src="/public/img/logo-no-background.svg"
               width="250px"
             /></span></a><button
           data-bs-toggle="collapse"
@@ -52,17 +52,24 @@
             <li class="nav-item"></li>
             <li class="nav-item"></li>
             <li class="nav-item"></li></ul>
-
-          <button
-            class="btn btn-primary btn-color login-btn"
-            id="login-btn"
-            type="button"
-          >Login</button>
-          <button
-            class="btn btn-primary btn-color"
-            id="logout-btn"
-            type="button"
-          >Logout</button>
+          {{#if logged_in}}
+            <button
+              class="btn btn-primary btn-color"
+              id="user-logout"
+              type="button"
+            >Logout</button>
+            <button
+              class="btn btn-primary btn-color"
+              id="rsvp-btn"
+              type="button"
+            >RSVP</button>
+          {{else}}
+            <button
+              class="btn btn-primary btn-color login-btn"
+              id="login-btn"
+              type="button"
+            >Login</button>
+          {{/if}}
 
         </div>
       </div>
