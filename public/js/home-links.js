@@ -52,8 +52,6 @@ const loginFormHandler = async (event) => {
       headers: { "Content-Type": "application/json" },
     });
 
-    // console.log(response);
-
     if (response.ok) {
       document.location.replace("/api/user/guest-list");
       console.log("Logged In!");
@@ -64,7 +62,46 @@ const loginFormHandler = async (event) => {
   }
 };
 
+const rsvpResponse = async (e) => {
+  e.preventDefault();
+  const guestName = document.querySelector("#guest-name").value;
+  const attending = document.querySelector('input[name="a"]:checked').value;
+  console.log("Before PATCH call ++++++++++++++++++++++++++++++++++++++++");
+  console.log(`Guest name: ${guestName}`);
+  console.log("Attending:", attending);
 
+  const response = await fetch("/api/post/guest-rsvp", {
+    method: "PATCH",
+    body: JSON.stringify({ guestName, attending }),
+    headers: { "Content-Type": "application/json" },
+  });
+
+  if (response.ok) {
+    if (attending === "true") {
+      document.querySelector("#modal-message").textContent =
+        "Looking forward to seeing you!";
+      $("#modal-1").modal("show");
+
+      // Move the document.location.replace() call here
+      $("#modal-1").on("hidden.bs.modal", function () {
+        document.location.replace("/");
+      });
+    } else if (attending === "false") {
+      document.querySelector("#modal-message").textContent =
+        "Sorry you can't make it.";
+      $("#modal-1").modal("show");
+
+      // Move the document.location.replace() call here
+      $("#modal-1").on("hidden.bs.modal", function () {
+        document.location.replace("/");
+      });
+    }
+  } else {
+    alert("Please check your input and try again.");
+  }
+
+  // document.location.replace("/");
+};
 
 //! ::::: LANDING PAGE BUTTONS EVENT LISTENERS :::::
 // ::::: Landing page login button :::::
@@ -75,3 +112,7 @@ $("#login-form-btn").click(loginFormHandler);
 
 // ::::: Signup form button on signup page :::::
 $("#signup-form-btn").click(signupFormHandler);
+
+// ::::: RSVP form submit :::::
+const rsvpForm = document.querySelector("#rsvp-response");
+rsvpForm.addEventListener("submit", rsvpResponse);
