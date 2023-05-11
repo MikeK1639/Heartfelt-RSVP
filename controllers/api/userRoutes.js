@@ -1,5 +1,6 @@
 const router = require("express").Router();
-const { User } = require("../../models");
+const { error } = require("jquery");
+const { User, Guest } = require("../../models");
 
 // ::::: New user created and written to database :::::
 router.post("/", async (req, res) => {
@@ -72,8 +73,45 @@ router.get("/contact", (req, res) => {
 });
 
 router.get("/guest-list", (req, res) => {
-  res.render("guest-list");
+  
+  // {
+      // const guestData = 
+      Guest.findAll()  
+       .then(dbData =>{
+        res.json(dbData)
+      })
+      .catch(err=>{
+        console.log(err);
+        res.status(500).json({msg:"error", err
+        });
+      });
+      //   }
+      // })
+      // .then(dbData =>{
+      //   if(!dbData){
+      //     res.status(404).json ({message:'no guest found'})
+      //     return
+      //   } else {
+      //     res.status(200).json(guestData)
+      //     return
+      //   }
+      //   const post = dbData.get({plain:true})
+      // }) 
+      
+      // console.log(userData);
+      // const post = guestData.get({ plain: true });
+      // console.log(user);
+      // res.render('post', {
+      //   post
+      // });
+    // } catch (err) {
+    //   console.log(err);
+    //   res.status(500).json(err);
+    // }
 });
+ 
+  
+
 
 module.exports = router;
 
@@ -97,4 +135,4 @@ router.delete('/logout', (req, res) => {
 module.exports = router;
 
 // ::::: Signup form button on signup page :::::
-$("#logout-btn").click(logoutHandler);
+// $("#logout-btn").click(logoutHandler);

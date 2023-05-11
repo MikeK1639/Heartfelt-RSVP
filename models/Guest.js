@@ -21,10 +21,10 @@ Guest.init(
       allowNull: false,
       defaultValue: DataTypes.NOW,
     },
-    attending: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false
-    },
+  //   attending: {
+  //     type: DataTypes.BOOLEAN,
+  //     defaultValue: false
+  //   },
     event_id: {
       type: DataTypes.INTEGER,
       references: {
