@@ -4,7 +4,7 @@ const withAuth = require("../../utils/auth");
 
 router.get("/guest-rsvp", withAuth, async (req, res) => {
   try {
-    res.render("guest-rsvp");
+    res.status(200);
   } catch (err) {
     console.log(err);
   }

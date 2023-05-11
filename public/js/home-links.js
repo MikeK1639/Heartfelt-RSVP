@@ -103,6 +103,30 @@ const rsvpResponse = async (e) => {
   // document.location.replace("/");
 };
 
+const rsvpPage = async (e) => {
+  e.preventDefault();
+  console.log("In rsvpPage function");
+  const response = await fetch("/api/user/guest-list", {
+    method: "GET",
+  });
+
+  if (response.ok) {
+    document.location.replace("/api/user/guest-list");
+  }
+};
+
+const userLogout = async (e) => {
+  console.log(
+    "In logout function.++++++++++++++++++++++++++++++++++++++++++++\n++++++++++++++++++++++++++++++++++++++++++"
+  );
+  const response = await fetch("/api/user/logout");
+
+  if (response.ok) {
+    console.log("User has been logged out.");
+    document.location.replace("/");
+  }
+};
+
 //! ::::: LANDING PAGE BUTTONS EVENT LISTENERS :::::
 // ::::: Landing page login button :::::
 $("#login-btn").click(loginNavBtnHandler);
@@ -113,6 +137,11 @@ $("#login-form-btn").click(loginFormHandler);
 // ::::: Signup form button on signup page :::::
 $("#signup-form-btn").click(signupFormHandler);
 
+// ::::: RSVP nav button :::::
+$("#rsvp-btn").click(rsvpPage);
+
 // ::::: RSVP form submit :::::
 const rsvpForm = document.querySelector("#rsvp-response");
 rsvpForm.addEventListener("submit", rsvpResponse);
+
+$("#logout-btn").click(userLogout);
