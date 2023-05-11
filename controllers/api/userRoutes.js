@@ -27,6 +27,7 @@ router.post("/", async (req, res) => {
   }
 });
 
+// ! ::::::: Log In ::::::::::
 router.post("/login", async (req, res) => {
   try {
     const userData = await User.findOne({

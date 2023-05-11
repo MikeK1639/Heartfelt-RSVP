@@ -16,7 +16,7 @@ const signupFormHandler = async (event) => {
   //! ::::: SIGN UP :::::
   // ::::: Redirect to the signup route to create a new user :::::
   if (user && email && password) {
-    const response = await fetch("api/user", {
+    const response = await fetch("/api/user", {
       method: "POST",
       body: JSON.stringify({ user, email, password }), // stringify to send over
       headers: { "Content-Type": "application/json" },
@@ -26,7 +26,7 @@ const signupFormHandler = async (event) => {
     if (response.ok) {
       const { message } = await response.json();
       console.log(message);
-      document.location.replace("api/user/guest-list");
+      document.location.replace("/api/user/guest-list");
     } else {
       alert(
         "Please check your user name and password.\nIf you are a new user, please Sign Up."
@@ -43,7 +43,9 @@ const loginFormHandler = async (event) => {
   const email = document.querySelector("#email-login").value.trim();
   const password = document.querySelector("#password-login").value.trim();
 
-  console.log(`Email:${email}\nPassword: ${password}`);
+  console.log(
+    `+++++++++++++++Email:${email}\nPassword: ${password}++++++++++++++++`
+  );
 
   if (email && password) {
     const response = await fetch("api/user/login", {
@@ -53,9 +55,12 @@ const loginFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace("/api/user/guest-list");
+      document.location.replace("api/user/guest-list");
       console.log("Logged In!");
     } else {
+      console.log(
+        `+++++++++++++++Email:${email}\nPassword: ${password}++++++++++++++++`
+      );
       alert("Please check your email and password and try again.");
       // alert(response.statusText);
     }
@@ -148,19 +153,36 @@ const addGuest = async (e) => {
 
 //! ::::: LANDING PAGE BUTTONS EVENT LISTENERS :::::
 // ::::: Landing page login button :::::
-$("#login-btn").click(loginNavBtnHandler);
-$("#user-logout").click(userLogout);
+// $("#login-btn").click(loginNavBtnHandler);
+const loginBtn = document.getElementById("login-btn");
+if (loginBtn) {
+  loginBtn.addEventListener("click", loginNavBtnHandler);
+}
 
-// ::::: LogIn form button on login page :::::
-$("#login-form-btn").click(loginFormHandler);
+// $("#user-logout").click(userLogout);
+const userLogoutBtn = document.getElementById("user-logout");
+if (userLogoutBtn) userLogoutBtn.addEventListener("click", userLogout);
 
-// ::::: Signup form button on signup page :::::
-$("#signup-form-btn").click(signupFormHandler);
+//* ::::: LogIn form button on login page :::::
+// $("#login-form-btn").click(loginFormHandler);
+const loginFormBtn = document.getElementById("login-form-btn");
+if (loginFormBtn) loginFormBtn.addEventListener("click", loginFormHandler);
 
-// ::::: RSVP nav button :::::
-$("#rsvp-btn").click(rsvpPage);
+//* ::::: Signup form button on signup page :::::
+// $("#signup-form-btn").click(signupFormHandler);
+const signupFormBtn = document.getElementById("signup-form-btn");
+if (signupFormBtn) signupFormBtn.addEventListener("click", signupFormHandler);
 
-// ::::: RSVP form submit :::::
+//* ::::: RSVP nav button :::::
+// $("#rsvp-btn").click(rsvpPage);
+const rsvpBtn = document.querySelector("#rsvp-btn");
+if (rsvpBtn) rsvpBtn.addEventListener("click", rsvpPage);
+
+//* ::::: RSVP form submit :::::
 const rsvpForm = document.querySelector("#rsvp-response");
-rsvpForm.addEventListener("submit", rsvpResponse);
-$("#add-guest").click(addGuest);
+if (rsvpForm) rsvpForm.addEventListener("submit", rsvpResponse);
+
+//* ::::: Create a new guest :::::
+// $("#add-guest").click(addGuest);
+const addGuestBtn = document.getElementById("add-guest");
+if (addGuestBtn) addGuestBtn.addEventListener("click", addGuest);
