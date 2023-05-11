@@ -83,7 +83,7 @@ router.delete('/logout', (req, res) => {
       if (err) {
         res.sendStatus(400);
       } else {
-        res.sendStatus(200).send('You have been successfully logged out.');
+        res.status(200).send('You have been successfully logged out.');
       }
     });
   } else {

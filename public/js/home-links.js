@@ -117,7 +117,9 @@ const userLogout = async (e) => {
   console.log(
     "In logout function.++++++++++++++++++++++++++++++++++++++++++++\n++++++++++++++++++++++++++++++++++++++++++"
   );
-  const response = await fetch("/api/user/logout");
+  const response = await fetch("/api/user/logout", {
+    method: "DELETE",
+  });
 
   if (response.ok) {
     console.log("User has been logged out.");
@@ -128,7 +130,7 @@ const userLogout = async (e) => {
 //! ::::: LANDING PAGE BUTTONS EVENT LISTENERS :::::
 // ::::: Landing page login button :::::
 $("#login-btn").click(loginNavBtnHandler);
-$("#logout-btn").click(userLogout);
+$("#user-logout").click(userLogout);
 
 // ::::: LogIn form button on login page :::::
 $("#login-form-btn").click(loginFormHandler);
