@@ -117,7 +117,9 @@ const userLogout = async (e) => {
   console.log(
     "In logout function.++++++++++++++++++++++++++++++++++++++++++++\n++++++++++++++++++++++++++++++++++++++++++"
   );
-  const response = await fetch("/api/user/logout");
+  const response = await fetch("/api/user/logout", {
+    method: "DELETE",
+  });
 
   if (response.ok) {
     console.log("User has been logged out.");
@@ -125,10 +127,29 @@ const userLogout = async (e) => {
   }
 };
 
+const addGuest = async (e) => {
+  e.preventDefault();
+  console.log(
+    "Adding guest function.++++++++++++++++++++++++++++++++++++++++++++\n++++++++++++++++++++++++++++++++++++++++++"
+  );
+
+  const newGuest = document.querySelector("#new-guest").value.trim();
+
+  const response = await fetch("/api/post/guest-list", {
+    method: "POST",
+    body: JSON.stringify({ newGuest }),
+    headers: { "Content-Type": "application/json" },
+  });
+
+  if (response.ok) {
+    console.log("Guest added.");
+  }
+};
+
 //! ::::: LANDING PAGE BUTTONS EVENT LISTENERS :::::
 // ::::: Landing page login button :::::
 $("#login-btn").click(loginNavBtnHandler);
-$("#logout-btn").click(userLogout);
+$("#user-logout").click(userLogout);
 
 // ::::: LogIn form button on login page :::::
 $("#login-form-btn").click(loginFormHandler);
@@ -142,3 +163,4 @@ $("#rsvp-btn").click(rsvpPage);
 // ::::: RSVP form submit :::::
 const rsvpForm = document.querySelector("#rsvp-response");
 rsvpForm.addEventListener("submit", rsvpResponse);
+$("#add-guest").click(addGuest);

@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { User } = require("../../models");
+const { User, Guest } = require("../../models");
 
 // ::::: New user created and written to database :::::
 router.post("/", async (req, res) => {
@@ -71,19 +71,28 @@ router.get("/contact", (req, res) => {
   res.render("contacts");
 });
 
-router.get("/guest-list", (req, res) => {
-  res.render("guest-list", {
-    logged_in: req.session.logged_in,
-  });
+router.get("/guest-list", async (req, res) => {
+  try {
+    const guestData = await Guest.findAll();
+    const invited = guestData.map((guest) => guest.get({ plain: true }));
+
+    res.render("guest-list", {
+      invited,
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ msg: "error", err });
+  }
 });
 
-router.delete('/logout', (req, res) => {
+router.delete("/logout", (req, res) => {
   if (req.session) {
-    req.session.destroy(err => {
+    req.session.destroy((err) => {
       if (err) {
         res.sendStatus(400);
       } else {
-        res.sendStatus(200).send('You have been successfully logged out.');
+        res.status(200).send("You have been successfully logged out.");
       }
     });
   } else {

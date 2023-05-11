@@ -11,12 +11,15 @@
           name</button></div>
     </div> }}
     <div class="row">
-      <div id="invited-guest" class="col offset-lg-0 d-inline-flex justify-content-center"><input
+      <div
+        id="invited-guest"
+        class="col offset-lg-0 d-inline-flex justify-content-center"
+      ><input id="new-guest"
           class="border rounded shadow-sm d-xl-flex justify-content-xl-center px-4"
           type="text"
           name="input"
           placeholder="Enter your full name"
-        /><button class="btn btn-primary mx-3 btn-color" type="button">Add guest</button></div>
+        /><button id="add-guest" class="btn btn-primary mx-3 btn-color" type="button">Add guest</button></div>
     </div>
   </div>
 </section>
@@ -24,12 +27,12 @@
   <div class="col mt-3 my-5 pt-4">
     <h4 id="guests" class="fs-1 fw-normal text-center">Guest List</h4>
     {{! * UN-COMMENT LATER }}
-    {{!-- {{#each}}
+    {{#each invited}}
       {{#if attending}}
-        <p class="fs-3 text-center">${guest_name}</p><span>⭐</span>
+        <p class="fs-3 text-center">⭐{{guest_name}}</p>
       {{else}}
-        <p class="fs-3 text-center">${guest_name}</p>
+        <p class="fs-3 text-center">{{guest_name}}</p>
       {{/if}}
-    {{/each}} --}}
+    {{/each}}
   </div>
 </section>
