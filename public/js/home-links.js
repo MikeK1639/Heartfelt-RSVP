@@ -99,8 +99,6 @@ const rsvpResponse = async (e) => {
   } else {
     alert("Please check your input and try again.");
   }
-
-  // document.location.replace("/");
 };
 
 const rsvpPage = async (e) => {
@@ -130,6 +128,7 @@ const userLogout = async (e) => {
 //! ::::: LANDING PAGE BUTTONS EVENT LISTENERS :::::
 // ::::: Landing page login button :::::
 $("#login-btn").click(loginNavBtnHandler);
+$("#logout-btn").click(userLogout);
 
 // ::::: LogIn form button on login page :::::
 $("#login-form-btn").click(loginFormHandler);
@@ -143,5 +142,3 @@ $("#rsvp-btn").click(rsvpPage);
 // ::::: RSVP form submit :::::
 const rsvpForm = document.querySelector("#rsvp-response");
 rsvpForm.addEventListener("submit", rsvpResponse);
-
-$("#logout-btn").click(userLogout);

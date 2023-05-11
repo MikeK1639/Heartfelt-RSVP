@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const { Events, User } = require("../models");
+const withAuth = require("../utils/auth");
 
 router.get("/", async (req, res) => {
   try {
@@ -9,8 +10,15 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/login", (req, res) => {
+router.get("/guest-rsvp", withAuth, async (req, res) => {
+  try {
+    res.render("guest-list");
+  } catch (err) {
+    console.log(err);
+  }
+});
 
+router.get("/login", (req, res) => {
   try {
     res.render("login");
   } catch (err) {
@@ -19,9 +27,7 @@ router.get("/login", (req, res) => {
 });
 
 router.get("/signup", (req, res) => {
-
   res.render("signup");
 });
-
 
 module.exports = router;

@@ -2,9 +2,9 @@ const router = require("express").Router();
 const { User, Guest } = require("../../models");
 const withAuth = require("../../utils/auth");
 
-router.get("/guest-rsvp", withAuth, async (req, res) => {
+router.get("/guest-rsvp", async (req, res) => {
   try {
-    res.status(200);
+    res.render("guest-rsvp");
   } catch (err) {
     console.log(err);
   }
