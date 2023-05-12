@@ -36,6 +36,14 @@ User.init(
         len: [8],
       },
     },
+    created_at: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
+    updated_at: {
+      type: DataTypes.DATE,
+      defaultValue: DataTypes.NOW,
+    },
   },
   {
     hooks: {
@@ -50,7 +58,7 @@ User.init(
     },
     // ::::: Writing `Event` table to database :::::
     sequelize,
-    timestamps: false,
+    timestamps: true,
     freezeTableName: true,
     underscored: true,
     modelName: "user",

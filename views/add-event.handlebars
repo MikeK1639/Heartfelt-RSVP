@@ -1,0 +1,39 @@
+<form id="add-event-form" method="POST">
+  <div class="row">
+    <div class="col offset-lg-0 d-inline-flex justify-content-center"><input
+        id="event-name"
+        class="border rounded shadow-sm d-xl-flex justify-content-xl-center px-4"
+        type="text"
+        name="event name"
+        placeholder="Event Name"
+      />
+      <input
+        id="event-description"
+        class="border mx-3 rounded shadow-sm d-xl-flex justify-content-xl-center px-4"
+        type="text"
+        name="event description"
+        placeholder="Event Description"
+      />
+      <button
+        id="add-event"
+        class="btn btn-primary mx-3 btn-color"
+        type="submit"
+        value="Submit"
+      >Create Event</button></div>
+  </div>
+</form>
+<section>
+  <div class="col mt-3 my-5 pt-4">
+    <h4 id="events" class="fs-1 fw-normal text-center">Event List</h4>
+    {{#each events}}
+      <p
+        class="text-center event-link guest-p"
+        data-event="{{this.event_name}}"
+      ><a
+          data-event="{{this.event_name}}"
+          data-event-id="{{this.id}}"
+          href="/api/user/guest-list/{{this.id}}"
+        >{{this.event_name}}</a></p>
+    {{/each}}
+  </div>
+</section>

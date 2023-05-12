@@ -55,7 +55,7 @@ const loginFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace("api/user/guest-list");
+      document.location.replace("/event");
       console.log("Logged In!");
     } else {
       console.log(
@@ -71,13 +71,14 @@ const rsvpResponse = async (e) => {
   e.preventDefault();
   const guestName = document.querySelector("#guest-name").value;
   const attending = document.querySelector('input[name="a"]:checked').value;
+  const event = e.target.dataset.event;
   console.log("Before PATCH call ++++++++++++++++++++++++++++++++++++++++");
   console.log(`Guest name: ${guestName}`);
   console.log("Attending:", attending);
 
   const response = await fetch("/api/post/guest-rsvp", {
     method: "PATCH",
-    body: JSON.stringify({ guestName, attending }),
+    body: JSON.stringify({ guestName, attending, event_id: event }),
     headers: { "Content-Type": "application/json" },
   });
 
@@ -142,13 +143,52 @@ const addGuest = async (e) => {
 
   const response = await fetch("/api/post/guest-list", {
     method: "POST",
-    body: JSON.stringify({ newGuest }),
+    body: JSON.stringify({ newGuest, event_id: e.target.dataset.event }),
     headers: { "Content-Type": "application/json" },
   });
 
   if (response.ok) {
+    location.reload();
     console.log("Guest added.");
   }
+};
+
+const createEvent = async (e) => {
+  e.preventDefault();
+  const eventName = document.querySelector("#event-name").value.trim();
+  const eventDescription = document
+    .querySelector("#event-description")
+    .value.trim();
+
+  const response = await fetch("/api/user/add-event", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      event_name: eventName,
+      event_description: eventDescription,
+    }),
+  });
+
+  if (response.ok) {
+    location.reload();
+    console.log("Event created.");
+    // document.location.href = "/api/user/guest-list";
+  } else {
+    alert("Failed to add event");
+  }
+};
+
+const loadAddEvent = async (e) => {
+  e.preventDefault();
+  document.location.href = "/event";
+};
+
+const getEvent = (event) => {
+  event.preventDefault();
+  const eventName = event.target.dataset.event;
+  console.log("event name +++++++++++++++++++++++", eventName);
 };
 
 //! ::::: LANDING PAGE BUTTONS EVENT LISTENERS :::::
@@ -173,16 +213,30 @@ if (loginFormBtn) loginFormBtn.addEventListener("click", loginFormHandler);
 const signupFormBtn = document.getElementById("signup-form-btn");
 if (signupFormBtn) signupFormBtn.addEventListener("click", signupFormHandler);
 
-//* ::::: RSVP nav button :::::
+//* ::::: Guest List nav button :::::
 // $("#rsvp-btn").click(rsvpPage);
-const rsvpBtn = document.querySelector("#rsvp-btn");
-if (rsvpBtn) rsvpBtn.addEventListener("click", rsvpPage);
+const guestListBtn = document.querySelector("#guest-list-btn");
+if (guestListBtn) guestListBtn.addEventListener("click", rsvpPage);
 
 //* ::::: RSVP form submit :::::
 const rsvpForm = document.querySelector("#rsvp-response");
 if (rsvpForm) rsvpForm.addEventListener("submit", rsvpResponse);
 
 //* ::::: Create a new guest :::::
-// $("#add-guest").click(addGuest);
 const addGuestBtn = document.getElementById("add-guest");
 if (addGuestBtn) addGuestBtn.addEventListener("click", addGuest);
+
+//* ::::: Add a new event :::::
+const addNewEventBtn = document.getElementById("add-event-form");
+if (addNewEventBtn) addNewEventBtn.addEventListener("submit", createEvent);
+
+//* ::::: Load new event page :::::
+const navEventBtn = document.getElementById("nav-event-btn");
+if (navEventBtn) navEventBtn.addEventListener("click", loadAddEvent);
+
+//* ::::: Load new event page :::::
+// // returns an array
+// const eventLink = document.querySelectorAll(".event-link");
+// // adding event handler to each link
+// if (eventLink)
+//   eventLink.forEach((link) => link.addEventListener("click", getEvent));

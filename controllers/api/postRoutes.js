@@ -2,15 +2,15 @@ const router = require("express").Router();
 const { User, Guest } = require("../../models");
 const withAuth = require("../../utils/auth");
 
-router.get("/guest-rsvp", async (req, res) => {
+router.get("/guest-rsvp/:id", async (req, res) => {
   try {
-    res.render("guest-rsvp");
+    res.render("guest-rsvp", {id: req.params.id});
   } catch (err) {
     console.log(err);
   }
 });
 
-router.patch("/guest-rsvp", async (req, res) => {
+router.patch("/guest-rsvp/", async (req, res) => {
   console.log(
     "++++++++++++++++++++++++++++++++++++++++++\nUpdating attending..."
   );
@@ -19,7 +19,7 @@ router.patch("/guest-rsvp", async (req, res) => {
     const attendingStr = req.body.attending; // add this line to get the value of the selected option
     const attendingBool = attendingStr === "true" ? true : false;
 
-    const guest = await Guest.findOne({ where: { guest_name: guest_name } });
+    const guest = await Guest.findOne({ where: { guest_name: guest_name, event_id: req.body.event_id } });
 
     if (!guest) {
       return res.status(404).send("Guest not found");
@@ -60,7 +60,8 @@ router.post("/guest-list", async (req, res) => {
   try {
     const guestData = await Guest.create({
       guest_name: req.body.newGuest,
-      user_id: req.body.user_id,
+      user_id: req.session.user_id,
+      event_id: req.body.event_id,
     });
 
     console.log(guestData);
@@ -70,7 +71,7 @@ router.post("/guest-list", async (req, res) => {
     return res.status(201).send("Guest added successfully."); // Return a success message
   } catch (err) {
     console.error(err);
-    // return res.status(500).send(err); // Return an error message
+    return res.status(500).send(err); // Return an error message
   }
 });
 

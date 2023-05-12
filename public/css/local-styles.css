@@ -1,3 +1,8 @@
+body {
+  position: relative;
+  min-height: 100vh;
+}
+
 .signup-btn {
   margin-right: 10px;
 }
@@ -84,4 +89,8 @@
 
 .radio-margin {
   margin-right: 10px;
+}
+
+.guest-p {
+  font-size: 1.2rem;
 }
