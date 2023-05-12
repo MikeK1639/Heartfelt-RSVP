@@ -1,4 +1,6 @@
-# Heartfelt-RSVP
+# Heartfelt-RSVP 
+https://heartrsvp.herokuapp.com/login 
+
 This is an application to help with the head aches of wedding planning by taking care of the RSVP process. The future and MR and MRS and will create an invitation list and prospective guests and the guest will then sign in using a 1+1 authentication process and RSVP to the gathering.
 
 Installation
@@ -22,7 +24,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 https://github.com/MikeK1639/Heartfelt-RSVP
 https://mikek1639.github.io/Heartfelt-RSVP/  
-https://heartrsvp.herokuapp.com/login 
+
 
 ![image](https://github.com/MikeK1639/Heartfelt-RSVP/assets/126822125/eb1d8899-b64f-4358-a31f-797a1c934459)
 
