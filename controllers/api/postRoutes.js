@@ -60,7 +60,7 @@ router.post("/guest-list", async (req, res) => {
   try {
     const guestData = await Guest.create({
       guest_name: req.body.newGuest,
-      user_id: req.body.user_id,
+      user_id: req.session.user_id,
     });
 
     console.log(guestData);

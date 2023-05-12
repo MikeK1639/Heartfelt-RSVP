@@ -13,13 +13,11 @@ Event.belongsTo(User, {
   foreignKey: "user_id",
 });
 
-// Event hasMany Guests
 Event.hasMany(Guest, {
   foreignKey: "event_id",
   onDelete: "CASCADE",
 });
 
-// Guest belongsTo Event
 Guest.belongsTo(Event, {
   foreignKey: "event_id",
 });

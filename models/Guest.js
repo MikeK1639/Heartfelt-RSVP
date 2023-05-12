@@ -23,12 +23,19 @@ Guest.init(
     },
     attending: {
       type: DataTypes.BOOLEAN,
-      defaultValue: false
+      defaultValue: false,
+    },
+    user_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: "Event",
+        key: "user_id"
+      }
     },
     event_id: {
       type: DataTypes.INTEGER,
       references: {
-        model: "event",
+        model: "Event",
         key: "id",
       },
     },

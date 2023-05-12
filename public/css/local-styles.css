@@ -1,3 +1,8 @@
+body {
+  position: relative;
+  min-height: 100vh;
+}
+
 .signup-btn {
   margin-right: 10px;
 }
@@ -84,4 +89,24 @@
 
 .radio-margin {
   margin-right: 10px;
+}
+
+/* body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+} */
+
+.wrapper {
+  padding-bottom: 1.5rem; /* Footer height */
+}
+
+.footer-container {
+  margin: 0;
+}
+#footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /*height: 2.5rem;  Footer height */
 }

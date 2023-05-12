@@ -151,6 +151,36 @@ const addGuest = async (e) => {
   }
 };
 
+const createEvent = async (e) => {
+  e.preventDefault();
+  const eventName = document.querySelector("#event-name").value.trim();
+  const eventDescription = document
+    .querySelector("#event-description")
+    .value.trim();
+
+  const response = await fetch("/api/user/event", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      event_name: eventName,
+      event_description: eventDescription,
+    }),
+  });
+
+  if (response.ok) {
+    document.location.href = "/api/user/guest-list";
+  } else {
+    alert("Failed to add event");
+  }
+};
+
+const loadAddEvent = async (e) => {
+  e.preventDefault();
+  document.location.href = "/add-event";
+};
+
 //! ::::: LANDING PAGE BUTTONS EVENT LISTENERS :::::
 // ::::: Landing page login button :::::
 // $("#login-btn").click(loginNavBtnHandler);
@@ -173,16 +203,23 @@ if (loginFormBtn) loginFormBtn.addEventListener("click", loginFormHandler);
 const signupFormBtn = document.getElementById("signup-form-btn");
 if (signupFormBtn) signupFormBtn.addEventListener("click", signupFormHandler);
 
-//* ::::: RSVP nav button :::::
+//* ::::: Guest List nav button :::::
 // $("#rsvp-btn").click(rsvpPage);
-const rsvpBtn = document.querySelector("#rsvp-btn");
-if (rsvpBtn) rsvpBtn.addEventListener("click", rsvpPage);
+const guestListBtn = document.querySelector("#guest-list-btn");
+if (guestListBtn) guestListBtn.addEventListener("click", rsvpPage);
 
 //* ::::: RSVP form submit :::::
 const rsvpForm = document.querySelector("#rsvp-response");
 if (rsvpForm) rsvpForm.addEventListener("submit", rsvpResponse);
 
 //* ::::: Create a new guest :::::
-// $("#add-guest").click(addGuest);
 const addGuestBtn = document.getElementById("add-guest");
 if (addGuestBtn) addGuestBtn.addEventListener("click", addGuest);
+
+//* ::::: Add a new event :::::
+const addNewEventBtn = document.getElementById("add-event-form");
+if (addNewEventBtn) addNewEventBtn.addEventListener("submit", createEvent);
+
+//* ::::: Load new event page :::::
+const navEventBtn = document.getElementById("nav-event-btn");
+if (navEventBtn) navEventBtn.addEventListener("click", loadAddEvent);
