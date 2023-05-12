@@ -61,6 +61,7 @@ router.post("/guest-list", async (req, res) => {
     const guestData = await Guest.create({
       guest_name: req.body.newGuest,
       user_id: req.session.user_id,
+      event_id: req.body.event_id,
     });
 
     console.log(guestData);

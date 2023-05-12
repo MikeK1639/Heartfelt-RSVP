@@ -55,7 +55,7 @@ const loginFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace("api/user/guest-list");
+      document.location.replace("/event");
       console.log("Logged In!");
     } else {
       console.log(
@@ -142,7 +142,7 @@ const addGuest = async (e) => {
 
   const response = await fetch("/api/post/guest-list", {
     method: "POST",
-    body: JSON.stringify({ newGuest }),
+    body: JSON.stringify({ newGuest, event_id: e.target.dataset.event }),
     headers: { "Content-Type": "application/json" },
   });
 
@@ -159,7 +159,7 @@ const createEvent = async (e) => {
     .querySelector("#event-description")
     .value.trim();
 
-  const response = await fetch("/api/user/event", {
+  const response = await fetch("/api/user/add-event", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -171,6 +171,7 @@ const createEvent = async (e) => {
   });
 
   if (response.ok) {
+    location.reload();
     console.log("Event created.");
     // document.location.href = "/api/user/guest-list";
   } else {
@@ -180,7 +181,13 @@ const createEvent = async (e) => {
 
 const loadAddEvent = async (e) => {
   e.preventDefault();
-  document.location.href = "/add-event";
+  document.location.href = "/event";
+};
+
+const getEvent = (event) => {
+  event.preventDefault();
+  const eventName = event.target.dataset.event;
+  console.log("event name +++++++++++++++++++++++", eventName);
 };
 
 //! ::::: LANDING PAGE BUTTONS EVENT LISTENERS :::::
@@ -225,3 +232,10 @@ if (addNewEventBtn) addNewEventBtn.addEventListener("submit", createEvent);
 //* ::::: Load new event page :::::
 const navEventBtn = document.getElementById("nav-event-btn");
 if (navEventBtn) navEventBtn.addEventListener("click", loadAddEvent);
+
+//* ::::: Load new event page :::::
+// returns an array
+const eventLink = document.querySelectorAll(".event-link");
+// adding event handler to each link
+if (eventLink)
+  eventLink.forEach((link) => link.addEventListener("click", getEvent));

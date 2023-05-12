@@ -22,3 +22,18 @@
       >Create Event</button></div>
   </div>
 </form>
+<section>
+  <div class="col mt-3 my-5 pt-4">
+    <h4 id="events" class="fs-1 fw-normal text-center">Event List</h4>
+    {{#each events}}
+      <p
+        class="text-center event-link guest-p"
+        data-event="{{this.event_name}}"
+      ><a
+          data-event="{{this.event_name}}"
+          data-event-id="{{this.event_id}}"
+          href="/guest-list/{{this.event_id}}"
+        >{{this.event_name}}</a></p>
+    {{/each}}
+  </div>
+</section>

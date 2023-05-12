@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Events, User } = require("../models");
+const { Event, User } = require("../models");
 const withAuth = require("../utils/auth");
 
 router.get("/", async (req, res) => {
@@ -12,12 +12,24 @@ router.get("/", async (req, res) => {
   }
 });
 
-router.get("/add-event", async (req, res) => {
-  try
-  {
-     res.render("add-event", {
+router.get("/event", async (req, res) => {
+  try {
+    const events = await Event.findAll({
+      where: { user_id: req.session.user_id },
+      attributes: ["event_name", "event_description"],
+    });
+
+    // Convert the array of Event objects to an array of plain JavaScript objects
+    const eventData = await events.map((event) => {
+      return { event_name: event.event_name };
+    });
+
+    res.render("add-event", {
+      events: eventData,
       logged_in: req.session.logged_in,
     });
+
+    
   } catch (err) {
     res.status(500).json(err);
   }

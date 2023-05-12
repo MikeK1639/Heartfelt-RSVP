@@ -1,9 +1,7 @@
 <section class="py-3 bg-primary-gradient pb-5">
-  <h1 class="fw-bold mb-5 event-title text-center mt-2">Events</h1>
+  <h1 class="fw-bold mb-5 event-title text-center mt-2">Event</h1>
 
-  {{#each events}}
-    <h5 class="text-center mb-5">Event name:&nbsp;{{this.event_name}}</h5>
-  {{/each}}
+  <h5 class="text-center mb-5">Event name:&nbsp;{{event.event_name}}</h5>
 
   <div class="container">
     {{! <div class="row mb-3 mt-5">
@@ -29,6 +27,7 @@
           id="add-guest"
           class="btn btn-primary mx-3 btn-color"
           type="button"
+          data-event="{{event.id}}"
         >Add guest</button></div>
     </div>
   </div>
@@ -37,7 +36,7 @@
   <div class="col mt-3 my-5 pt-4">
     <h4 id="guests" class="fs-1 fw-normal text-center">Guest List</h4>
 
-    {{#each guests}}
+    {{#each event.guests}}
       {{#if attending}}
         <p class="text-center guest-p">⭐&nbsp;{{guest_name}}</p>
       {{else}}
