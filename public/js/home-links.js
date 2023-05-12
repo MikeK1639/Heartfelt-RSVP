@@ -71,13 +71,14 @@ const rsvpResponse = async (e) => {
   e.preventDefault();
   const guestName = document.querySelector("#guest-name").value;
   const attending = document.querySelector('input[name="a"]:checked').value;
+  const event = e.target.dataset.event;
   console.log("Before PATCH call ++++++++++++++++++++++++++++++++++++++++");
   console.log(`Guest name: ${guestName}`);
   console.log("Attending:", attending);
 
   const response = await fetch("/api/post/guest-rsvp", {
     method: "PATCH",
-    body: JSON.stringify({ guestName, attending }),
+    body: JSON.stringify({ guestName, attending, event_id: event }),
     headers: { "Content-Type": "application/json" },
   });
 
@@ -234,8 +235,8 @@ const navEventBtn = document.getElementById("nav-event-btn");
 if (navEventBtn) navEventBtn.addEventListener("click", loadAddEvent);
 
 //* ::::: Load new event page :::::
-// returns an array
-const eventLink = document.querySelectorAll(".event-link");
-// adding event handler to each link
-if (eventLink)
-  eventLink.forEach((link) => link.addEventListener("click", getEvent));
+// // returns an array
+// const eventLink = document.querySelectorAll(".event-link");
+// // adding event handler to each link
+// if (eventLink)
+//   eventLink.forEach((link) => link.addEventListener("click", getEvent));

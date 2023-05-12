@@ -16,20 +16,19 @@ router.get("/event", async (req, res) => {
   try {
     const events = await Event.findAll({
       where: { user_id: req.session.user_id },
-      attributes: ["event_name", "event_description"],
     });
 
     // Convert the array of Event objects to an array of plain JavaScript objects
     const eventData = await events.map((event) => {
-      return { event_name: event.event_name };
+      return event.get({ plain: true });
     });
+
+    console.log(eventData);
 
     res.render("add-event", {
       events: eventData,
       logged_in: req.session.logged_in,
     });
-
-    
   } catch (err) {
     res.status(500).json(err);
   }

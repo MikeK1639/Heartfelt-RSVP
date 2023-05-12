@@ -127,31 +127,31 @@ router.post("/add-event", async (req, res) => {
       event_description: req.body.event_description,
       user_id: req.session.user_id,
     });
-
-    req.session.save(() => {
-      req.session.user_id = userData.user_id;
-      req.session.logged_in = true;
+// 
+//     req.session.save(() => {
+//       req.session.user_id = userData.user_id;
+//       req.session.logged_in = true;
 
       //* ::::: MUST SEND A RESPONSE :::::
-      // res.status(200).json({ user: userData, message: "Event added." });
-    });
+      res.status(200).json({ user: userData, message: "Event added." });
+    // });
 
-    const events = await Event.findAll({
-      where: { user_id: req.session.user_id },
-      attributes: ["event_name", "event_description", "event_id"],
-    });
-
-    // Convert the array of Event objects to an array of plain JavaScript objects
-    const eventData = await events.map((event) => {
-      return { event_name: event.event_name };
-    });
-
-    console.log("+++++++++++++++++++++++", eventData);
-
-    res.render("add-event", {
-      events: eventData,
-      logged_in: req.session.logged_in,
-    });
+//     const events = await Event.findAll({
+//       where: { user_id: req.session.user_id },
+//       attributes: ["event_name", "event_description", "event_id"],
+//     });
+// 
+//     // Convert the array of Event objects to an array of plain JavaScript objects
+//     const eventData = await events.map((event) => {
+//       return { event_name: event.event_name };
+//     });
+// 
+//     console.log("+++++++++++++++++++++++", eventData);
+// 
+//     res.render("add-event", {
+//       events: eventData,
+//       logged_in: req.session.logged_in,
+//     });
     // res.json(userData);
   } catch (err) {
     console.log(err);
