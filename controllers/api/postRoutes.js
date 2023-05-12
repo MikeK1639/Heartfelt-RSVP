@@ -70,7 +70,7 @@ router.post("/guest-list", async (req, res) => {
     return res.status(201).send("Guest added successfully."); // Return a success message
   } catch (err) {
     console.error(err);
-    // return res.status(500).send(err); // Return an error message
+    return res.status(500).send(err); // Return an error message
   }
 });
 

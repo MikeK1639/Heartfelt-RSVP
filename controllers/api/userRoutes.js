@@ -74,27 +74,26 @@ router.get("/contact", (req, res) => {
 
 router.get("/guest-list", async (req, res) => {
   try {
-    // Find all the events where the user is the host and only select the event_name attribute
     const events = await Event.findAll({
       where: { user_id: req.session.user_id },
-      attributes: ["event_name"],
+      attributes: ["event_name", "event_description"],
     });
 
     // Convert the array of Event objects to an array of plain JavaScript objects
-    const eventData = events.map((event) => {
+    const eventData = await events.map((event) => {
       return { event_name: event.event_name };
     });
 
     const guests = await Guest.findAll({
       where: { user_id: req.session.user_id },
-      attributes: ["guest_name"],
+      attributes: ["guest_name", "attending"],
     });
 
     // Convert the array of Event objects to an array of plain JavaScript objects
-    const guestList = guests.map((guest) => {
-      return { guest_name: guest.guest_name };
+    const guestList = await guests.map((guest) => {
+      console.log("++++++++++++++guest attending", guest.attending);
+      return { guest_name: guest.guest_name, attending: guest.attending };
     });
-    console.log("+++++++++++++++++++++++++++", guests);
 
     res.render("guest-list", {
       events: eventData,

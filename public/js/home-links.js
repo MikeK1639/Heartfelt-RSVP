@@ -147,6 +147,7 @@ const addGuest = async (e) => {
   });
 
   if (response.ok) {
+    location.reload();
     console.log("Guest added.");
   }
 };
@@ -170,7 +171,8 @@ const createEvent = async (e) => {
   });
 
   if (response.ok) {
-    document.location.href = "/api/user/guest-list";
+    console.log("Event created.");
+    // document.location.href = "/api/user/guest-list";
   } else {
     alert("Failed to add event");
   }
