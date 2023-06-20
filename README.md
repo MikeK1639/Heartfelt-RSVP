@@ -32,7 +32,11 @@ https://mikek1639.github.io/Heartfelt-RSVP/
 
 ![image](https://github.com/MikeK1639/Heartfelt-RSVP/assets/126822125/75c6ae92-be16-48e3-b27f-862acd06b1f4) 
 
-
+## Technologies
+- HTML
+- Handlebars
+- CSS
+- JavaScript
 
 
 
